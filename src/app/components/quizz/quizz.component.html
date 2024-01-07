@@ -1,0 +1,38 @@
+<div class="quizz-container">
+  <div class="quizz-question-container">
+    <div class="question-content">
+      <h2 class="title">{{ title }}</h2>
+      <p class="subtitle">{{ subtitle }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="!finished" class="quizz-options">
+    <div *ngIf="!finished" class="quizz-questions">
+      <h3 class="question">{{ questionSelected.question }}</h3>
+    </div>
+    <div class="grid-options">
+      <button
+        *ngFor="let option of questionSelected.options; let i = index"
+        (click)="playerChoose(option.alias)"
+        class="btn-option"
+      >
+        <span class="name-option">
+          {{ option.name }}
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="finished" class="results-content">
+    <div class="quizz-results">
+      <h2 class="result">Resultado</h2>
+      <div class="response">
+        <p>Você tirou:</p>
+        <p>{{ answerSelected?.text }}</p>
+        <img [src]="answerSelected?.img" alt="Resultado" />
+        <p class="result-description">{{ answerSelected?.description }}</p>
+      </div>
+      <button class="remake-quizz" (click)="remakeQuizz()">Refazer Quiz</button>
+    </div>
+  </div>
+</div>
